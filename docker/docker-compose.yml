@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  mysql_triggers_db:
+    container_name: mysql_triggers_db
+    image: mysql:8.4
+    restart: "no"
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DATABASE_ROOT_PASSWORD}"
+      MYSQL_PORT: 3306
+      MYSQL_USER: "${DATABASE_USER}"
+      MYSQL_PASSWORD: "${DATABASE_PASSWORD}"
+      MYSQL_DATABASE: "${DATABASE_NAME}"
+      MYSQL_LOWER_CASE_TABLE_NAMES: 0
+    ports:
+      - "${DATABASE_PORT}:3306"
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./files:/var/lib/mysql-files
+
+volumes:
+  data:
+  files:
